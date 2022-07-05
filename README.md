@@ -33,11 +33,22 @@ Example _(no styling)_:
 Example _(with styling)_:
 
 ```html
-  <div class="to-slider-container" style="--slider-thumb: 30px; --slider-height: 10px; --slider-width: 160px; --slider-thumb-color: red; --slider-background: transparent; --slider-progress: pink">
+  <div class="to-slider-container" style="--slider-thumb-color: red; --slider-progress: pink">
     <input class="to-slider" type="range" min="0" max="100" value="50" id="yourIDHere" step="1"> // Make sure to replace yourIDHere
     <output for="yourIDHere" class="to-slider-thumb"></output>                                   // on both of these lines!
   </div>
 ```
+
+## CSS Variables
+
+- `--slider-thumb`: The size of the slider's thumb. _(Default: 22px)_
+- `--slider-height`: The slider's height. _(Default: 8px)_
+- `--slider-width`: The slider's width. _(Default: 110px)_
+- `--slider-progress`: The color for the area of the slider before the thumb. _(Default: #82CFD0)_
+- `--slider-background`: The color for the area of the slider after the thumb. _(Default: gray)_
+- `--slider-thumb-color`: The color for the thumb. _(Default: blue)_
+- `--slider-font-color`: The color for the value on the thumb. _(Default: white)_
+- `--slider-additional-margin`: Additional margin besides the bounding box of the input and thumb. _(Default: 2px)_
 
 ## Javascript Functions
 
