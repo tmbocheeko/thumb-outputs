@@ -14,12 +14,12 @@
   height: fit-content;
   position: relative;
   box-sizing: border-box;
-	user-drag: none;
-	-webkit-user-drag: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  user-drag: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   margin: calc(((var(--slider-thumb) / 2) - (var(--slider-height) / 2)) + var(--slider-additional-margin)) calc((var(--slider-thumb) / 2) + var(--slider-additional-margin));
 }
 
@@ -65,8 +65,7 @@ output.to-slider-thumb {
   justify-content: space-around;
   border-radius: 50%;
   align-items: center;
-  transform-origin: center;
-  right: calc(-1 * var(--slider-thumb) / 2);
   font-size: calc((var(--slider-thumb) / 2) - (var(--slider-thumb) /  100));
-  transform: var(--slider-transform-y);
+  left: calc(var(--slider-value) - (var(--slider-thumb) / 2));
+  z-index: 1;
 }
