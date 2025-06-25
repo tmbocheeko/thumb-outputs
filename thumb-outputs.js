@@ -50,12 +50,8 @@ function thumbOutputUpdate(el) {
   var inputWidth = inputPos.width;
   var percent = (value - min) / (max - min) * 100;
   var output = document.querySelector("[for=" + el.id + "]");
-  var outputPos = output.getBoundingClientRect();
-  var outputWidth = outputPos.width;
-  var widthPercent = outputWidth / inputWidth * 100;
 	output.value = value;
-  output.style.transform = "translateX(" + (outputWidth * (percent / widthPercent) - outputWidth / 2) + 'px)';
-  output.style.right = "initial";
+  output.closest(".to-slider-container").style.setProperty("--slider-value", percent + "%");
 	var root = document.querySelector(":root");
 	var styles = getComputedStyle(root);
   var progress = styles.getPropertyValue("--slider-progress").trim();
