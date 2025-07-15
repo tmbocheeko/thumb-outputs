@@ -4,7 +4,14 @@ document.querySelectorAll(".to-slider-container").forEach(function (currentValue
   thumbOutputInitialize(currentValue, isNew);
 });
 
-function thumbOutputInitialize(el, isNew) {
+var thumbOutputDefaults = {
+  min: 0,
+  max: 100,
+  value: 50,
+  step: 1,
+}
+
+function thumbOutputInitialize(el, isNew, defaults = thumbOutputDefaults) {
   if (isNew == undefined || isNew == null) var isNew = true;
   var slider = el.querySelector(".to-slider");
   var thumb = el.querySelector(".to-slider-thumb");
@@ -22,15 +29,25 @@ function thumbOutputInitialize(el, isNew) {
       thumb.classList.add("to-slider-thumb");
       var appendThumb = true;
     }
-    var id = "to" + Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
-    console.log(thumb);
-    if (slider.id) var id = slider.id;
-    else if (thumb.getAttribute("for")) var id = thumb.getAttribute("for");
-    else if (el.id) var id = "to" + el.id;
+    var id = slider.id ||
+        thumb.getAttribute("for") ||
+        "to" + el.id ||
+        "to" + Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+    
+    if (!Array.isArray(defaults)) {
+      var defaults = {
+        min: 0,
+        max: 100,
+        value: 50,
+        step: 1,
+      }
+    }
+    
     if (!(slider.id)) slider.id = id;
-    if (!(slider.min)) slider.min = 0;
-    if (!(slider.max)) slider.max = 100;
-    if (!(slider.value)) slider.value = 50;
+    if (!(slider.min)) slider.min = defaults.min;
+    if (!(slider.max)) slider.max = defaults.max;
+    if (!(slider.value)) slider.value = defaults.value;
+    if (!(slider.step)) slider.step = defaults.step;
     if (!(slider.type)) slider.type = "range";
     if (!(thumb.getAttribute("for"))) thumb.setAttribute("for", id);
     if (appendSlider) el.appendChild(slider);
@@ -46,15 +63,9 @@ function thumbOutputUpdate(el) {
   var value = el.value;
   var min = el.min;
   var max = el.max;
-  var inputPos = el.getBoundingClientRect();
-  var inputWidth = inputPos.width;
+  var parEl = el.closest(".to-slider-container");
   var percent = (value - min) / (max - min) * 100;
-  var output = document.querySelector("[for=" + el.id + "]");
+  var output = parEl.querySelector("[for=" + el.id + "]");
 	output.value = value;
-  output.closest(".to-slider-container").style.setProperty("--slider-value", percent + "%");
-	var root = document.querySelector(":root");
-	var styles = getComputedStyle(root);
-  var progress = styles.getPropertyValue("--slider-progress").trim();
-  var background = styles.getPropertyValue("--slider-background").trim();
-  el.style.background = "linear-gradient(to right, var(--slider-progress) 0%, var(--slider-progress) " + percent + "%, var(--slider-background) " + percent + "%, var(--slider-background) 100%)";
+  parEl.style.setProperty("--slider-value", percent + "%");
 };
