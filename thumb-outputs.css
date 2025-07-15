@@ -29,11 +29,18 @@ input.to-slider:hover {
 
 input.to-slider {
   -webkit-appearance: none;
-  background: var(--slider-progress);
+  /*background: var(--slider-progress);*/
   height: var(--slider-height);
   border-radius: calc(var(--slider-height) / 2);
   width: var(--slider-width);
   display: flex;
+  background: linear-gradient(
+    to right,
+    var(--slider-progress) 0%,
+    var(--slider-progress) var(--slider-value),
+    var(--slider-background) var(--slider-value),
+    var(--slider-background) 100%
+  ); 
 }
 
 input.to-slider::-webkit-slider-thumb {
