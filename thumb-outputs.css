@@ -12,6 +12,7 @@
 
 .to-slider-container {
   height: fit-content;
+  width: var(--slider-width);
   position: relative;
   box-sizing: border-box;
   user-drag: none;
@@ -29,7 +30,6 @@ input.to-slider:hover {
 
 input.to-slider {
   -webkit-appearance: none;
-  /*background: var(--slider-progress);*/
   height: var(--slider-height);
   border-radius: calc(var(--slider-height) / 2);
   width: var(--slider-width);
